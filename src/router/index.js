@@ -20,11 +20,12 @@ const routes = [
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue'),
     beforeEnter: (to, from, next) => {
-      if (!store.getters.authenticated) {
+      if (store.getters['authenticated'] === null) {
         return next({
           name: 'Login'
         })
       }
+      next()
     }
   },
   {

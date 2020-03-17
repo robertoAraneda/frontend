@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar />
     <v-container>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6" md="4">
@@ -35,13 +36,21 @@
         </v-col>
       </v-row>
     </v-container>
+    <Footer />
   </div>
 </template>
 
 <script>
 import User from '../models/User'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
+
 export default {
   name: 'Login',
+  components: {
+    Navbar,
+    Footer
+  },
   data: () => ({
     showPassword: false,
     user: new User('', '')

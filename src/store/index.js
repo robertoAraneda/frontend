@@ -20,6 +20,7 @@ export default new Vuex.Store({
   mutations: {
     SET_USER_DATA(state, userData) {
       state.user = userData
+      localStorage.setItem('user', JSON.stringify(userData))
     },
     SET_TOKEN(state, token) {
       state.token = token
@@ -44,14 +45,21 @@ export default new Vuex.Store({
         commit('SET_TOKEN', token)
       }
 
-      if (this.state.token === 'null') {
+      if (this.getters['authenticated'] === null) {
         return
       }
 
-      axios.get('auth/me').then(response => {
-        console.log(response.data)
-        commit('SET_USER_DATA', response.data)
-      })
+      try {
+        axios.get('auth/me').then(response => {
+          console.log(response.data)
+          commit('SET_USER_DATA', response.data)
+        })
+      } catch (error) {
+        commit('SET_TOKEN', null)
+        commit('SET_USER_DATA', null)
+        localStorage.removeItem('token')
+        localStorage.removeItem('user')
+      }
     }
   },
   modules: {}
