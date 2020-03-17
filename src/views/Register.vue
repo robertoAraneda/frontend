@@ -57,7 +57,9 @@ export default {
   }),
   methods: {
     register() {
-      this.$store.dispatch('register', this.user)
+      this.$store.dispatch('register', this.user).then(() => {
+        this.$router.push({ name: 'Login' })
+      })
     }
   }
 }
