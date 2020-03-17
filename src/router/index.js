@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '../store/index'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,14 @@ const routes = [
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: () => import('../views/Dashboard.vue')
+    component: () => import('../views/Dashboard.vue'),
+    beforeEnter: (to, from, next) => {
+      if (!store.getters.authenticated) {
+        return next({
+          name: 'Login'
+        })
+      }
+    }
   },
   {
     path: '/register',

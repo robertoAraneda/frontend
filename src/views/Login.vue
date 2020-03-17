@@ -49,7 +49,7 @@ export default {
   methods: {
     login() {
       this.$store.dispatch('login', this.user).then(() => {
-        this.$router.push({ name: 'Dashboard' })
+        this.$router.replace({ name: 'Dashboard' })
       })
     }
   }
