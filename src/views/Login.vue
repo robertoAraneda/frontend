@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <Navbar />
-    <v-container>
+  <v-content>
+    <navbar-component />
+    <v-container class="fill-height" fluid>
       <v-row align="center" justify="center">
         <v-col cols="12" sm="6" md="4">
-          <v-card class="elevation-12 mt-5">
+          <v-card class="elevation-12">
             <v-form @submit.prevent="login">
               <v-toolbar color="primary" dark flat>
                 <v-toolbar-title>LOGIN</v-toolbar-title>
@@ -36,8 +36,8 @@
         </v-col>
       </v-row>
     </v-container>
-    <Footer />
-  </div>
+    <footer-component />
+  </v-content>
 </template>
 
 <script>
@@ -48,8 +48,8 @@ import Footer from '../components/Footer'
 export default {
   name: 'Login',
   components: {
-    Navbar,
-    Footer
+    'navbar-component': Navbar,
+    'footer-component': Footer
   },
   data: () => ({
     showPassword: false,
