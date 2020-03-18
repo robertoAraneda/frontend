@@ -49,7 +49,7 @@ export default {
   name: 'Dashboard',
   mounted() {
     axios
-      .get('//localhost:8000/api/v1/state')
+      .get('//localhost:8000/api/v1/states')
       .then(response => console.log(response))
   },
   computed: {
